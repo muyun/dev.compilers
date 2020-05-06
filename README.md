@@ -1,4 +1,4 @@
-# dev.compiler - A simple lisp interpreter 
+# dev.compiler - A simple interpreter 
 
 
 #### reference  
