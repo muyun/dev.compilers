@@ -42,4 +42,5 @@ abstract: "[Updating] Notes on the core ideas programming languages, especially 
 
   * sml-ch2
     - tuples are syntactic sugar for records with field names 1, 2, ...
-    -
+    - datatype
+    - type synonyms -> a convenience for talking about types
