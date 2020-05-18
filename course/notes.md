@@ -45,6 +45,18 @@ abstract: "[Updating] Notes on the core ideas programming languages, especially 
 
     - type synonyms -> a convenience for talking about types
     - datatypes bindings
-      + better to use pattern-matching ofr accessing list and option
+      + patter-matching over one-of types
+      + better to use pattern-matching to access list and option
 
-    -
+    - patter matching over **each-of types**
+      + value binding -> a val-binding **can use a pattern**, not just a variable
+      + function binding
+        - in ML, every function takes **exactly one tuple arg**, implemented with a tuple pattern in the function binding
+        - a **function argument** can also be a pattern
+      + Type-checker can **figure out the types of things you're matching against**,
+      no longer need to write down any explicit types for the arguments to functions or any variables
+
+      + type inference
+        - **more general** can replace its type variables consistently
+
+      + nested patterns
