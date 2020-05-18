@@ -53,10 +53,12 @@ abstract: "[Updating] Notes on the core ideas programming languages, especially 
       + function binding
         - in ML, every function takes **exactly one tuple arg**, implemented with a tuple pattern in the function binding
         - a **function argument** can also be a pattern
+
       + Type-checker can **figure out the types of things you're matching against**,
       no longer need to write down any explicit types for the arguments to functions or any variables
 
       + type inference
         - **more general** can replace its type variables consistently
 
-      + nested patterns
+    - nested pattern-matching
+      + elegantly recursive

@@ -15,3 +15,9 @@ fun unzip3 lst =
       | (a,b,c):: t1 => let val (l1,l2,l3) = unzip3 t1 (* a,b,c is the head of list *)
                         in  (a::l1, b::l2, c::l3)
                         end
+
+
+fun len xs =
+    case xs of
+        [] => 0
+     | _::xs' => 1 + len xs'
