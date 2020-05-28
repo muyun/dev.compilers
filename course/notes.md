@@ -62,3 +62,7 @@ abstract: "[Updating] Notes on the core ideas programming languages, especially 
 
     - nested pattern-matching
       + elegantly recursive
+
+    - **Recursion**
+      + **tail-recursive** -> recursive calls are tail-calls
+      + call-stacks -> pop the caller before the call, allowing callee to reuse the same stack space
