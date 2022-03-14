@@ -1,8 +1,11 @@
 
 #### notes  
 
+* 现在的编程工作更多是调用和组合别人写的轮子，
+而不像以前那样需要对轮子如何抽象和实现理解得很清楚 
+
 #### docs    
-  - standard ML    
+* standard ML    
     + SPC m s b -> Send buffer to REPL  
 
 #### reference  
