@@ -9,7 +9,10 @@
     + SPC m s b -> Send buffer to REPL  
 
 #### reference  
-* [lisp in small pieces]  
+* [Let's make a Teeny Tiny compiler](https://austinhenley.com/blog/teenytinycompiler1.html)
+* [teenytinycompiler](https://github.com/AZHenley/teenytinycompiler)
 * [the super tiny compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
+* [Building an Interpreter from scratch](http://dmitrysoshnikov.com/courses/essentials-of-interpretation/)
+* [lisp in small pieces]  
 * [Rob Pike's talk on lexing](https://www.youtube.com/watch?v=HxaD_trXwRE)
 * [Compilers](https://classroom.udacity.com/courses/ud168)

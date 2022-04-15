@@ -1,3 +1,4 @@
+
 #### notes about the code ideas in programming languages
   * functional programming  
 

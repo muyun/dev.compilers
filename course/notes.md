@@ -66,3 +66,6 @@ abstract: "[Updating] Notes on the core ideas programming languages, especially 
     - **Recursion**
       + **tail-recursive** -> recursive calls are tail-calls
       + call-stacks -> pop the caller before the call, allowing callee to reuse the same stack space
+
+  * sml-ch3 - first-class functions
+    -
