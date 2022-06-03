@@ -1,5 +1,5 @@
 
-#### dev.pipy - An interpreter  and Compilers for the Raspberry Pi Using Python
+#### dev.pipy - exercises while going through the book "Writing Compilers and Interpreters for the Raspberry Pi Using Python" by Anthony J. Dos Reis
 
 
 #### reference  
