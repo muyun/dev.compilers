@@ -1,5 +1,5 @@
 
-#### dev.pipy - exercises while going through the book "Writing Compilers and Interpreters for the Raspberry Pi Using Python" by Anthony J. Dos Reis
+#### dev.wic - exercises while going through the book "Writing Interpreters and Compilers for the Raspberry Pi Using Python" by Anthony J. Dos Reis
 
 
 #### reference  
