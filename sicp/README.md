@@ -2,8 +2,6 @@
 #### About [Composing Programs](http://composingprograms.com/pages/11-getting-started.html)    
 * how computers interpret computer programs and carry out computational processes  
 * some recent progress in computer programs  
-* 现在的编程工作更多是调用和组合别人写的轮子，而不像以前那样需要对轮子如何抽象和实现理解得很清楚 
-
 
 
 ##### ch4 - Data Processing  
@@ -15,6 +13,11 @@
 
 
 ##### ch1 - Building Abstractions with Functions  
+* represent **procedures (descriptions of processes) as data**  
+    - Lisp’s flexibility in handling procedures as data 
+    -  blur the traditional distinction between “passive” data and “active” processes.
+
+
 * The programming language serves a **framework where we organize our ideas** about computational processes   
     - combine simple ideas to form more complex ideas  
         + primitive expressions and statements  
@@ -36,11 +39,10 @@
 - **data abstraction** using interfaces, objects, classes, and generic operators  
 - structed data  
     + object metaphor -> value + behavior  
-
 - struct programs on abstract data  
-
 - data abstraction manipulate **compound values as units**  
     + isolate **how data are represented (as parts)** and **how data are manipulated (as units)**  
+    
     + **a concrete data representation**  
     + **the programs** that use the data  
     + **the interface** between these two parts of system will be a set of cuntions, called **selectors and constructors**   
@@ -59,7 +61,7 @@
 - mutable Data  
     + how data can be endowed with behavior using message passing and an object system 
     + non-local assignment give the ability to **maintain some state that is local to a function, but evolves over successive calls** to that function   
-     
+    
     + **Iterator**    
         - process elements of a container value sequentially  
         - **two components: next and a mechanism for signaling the end**    
@@ -77,6 +79,7 @@
         - As long as **the behavior conditions are met** (such as the division property),**the selector and constructors constitute a valid representation** of a kind of data  
         - identify a basic set of operations, and then to use only those operations in manipulating the data
         - by restricting the use of operations, it is easier to change the representation of abstract data without chaning the behavior of a program  
+    
     +  like in [data_abstraction.py](https://github.com/muyun/dev.programming/blob/master/python/exercise_py/data_abstraction.py),  function numer() and denom() as selectors, and function rational() as constructors to construct the function add_rational(), mul_rational()  
     
 - OOP    
@@ -87,16 +90,18 @@
     + generic functions are methods or functions that apply to argumetns of diff types  
         - [generic_function_1.py](https://github.com/muyun/dev.programming/blob/master/python/exercise_py/generic_function_1.py)  
 
-
-#### docs    
-* standard ML    
-    + SPC m s b -> Send buffer to REPL  
-
 #### reference  
-* [Let's make a Teeny Tiny compiler](https://austinhenley.com/blog/teenytinycompiler1.html)
-* [teenytinycompiler](https://github.com/AZHenley/teenytinycompiler)
-* [the super tiny compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
-* [Building an Interpreter from scratch](http://dmitrysoshnikov.com/courses/essentials-of-interpretation/)
-* [lisp in small pieces]  
-* [Rob Pike's talk on lexing](https://www.youtube.com/watch?v=HxaD_trXwRE)
-* [Data model in Python](https://docs.python.org/3/reference/datamodel.html)
+* **[SICP-ch2](https://sarabander.github.io/sicp/html/index.xhtml#SEC_Contents)**
+* **[CS 61A: Structure and Interpretation of Computer Programs](https://cs61a.org/)** 
+* [Essentials of Programming Languages](https://book.douban.com/subject/3136252/)  
+* [Racket Scheme & SICP](https://news.ycombinator.com/item?id=25442005)
+* [SICP in JS](https://sourceacademy.org/sicpjs/index)
+* [SICP in python](https://wizardforcel.gitbooks.io/sicp-in-python/content/8.html)  
+* [The Hitchhiker’s Guide to Python](http://docs.python-guide.org/en/latest/#)
+* [History of Tcl](http://www.tcl.tk/about/history.html)
+* [SICP-guile](https://github.com/zv/SICP-guile)  
+* [A Scheme Primer](https://spritely.institute/static/papers/scheme-primer.html)
+* [how to design programs-2nd](https://htdp.org/2018-01-06/Book/index.html) 
+* the little scheme  
+
+* [Why Study Functional Programming?](https://acm.wustl.edu/functional/)

@@ -1,0 +1,5 @@
+Pipfile*
+__pycache__
+*pyc*
+*DS_Store*
+python/exercise_py/__pycache__
