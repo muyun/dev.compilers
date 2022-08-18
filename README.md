@@ -1,5 +1,5 @@
 
-####notes on tiny-compiler
+#### notes on tiny-compiler
 * regular expressions    
 regulare expressions by definition are limited to the operations of 
 star, concatenation, and union.    
