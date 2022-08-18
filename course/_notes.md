@@ -8,7 +8,7 @@
       + Type-checking rules (before program runs) in current static environment  
         - what type a binding has 
         - produces a type or fail 
-        -
+        
       + Evaluation rules (**assuming it does type check**, how does it perform computation in order to produce a result
         - how a binding is evaluated
         - a value or an error or an infinite loop
