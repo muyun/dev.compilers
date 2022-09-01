@@ -1,15 +1,14 @@
 """
-sspy.py - A tiny Scheme interpreter with Python 
+sspy.py - A tiny Scheme interpreter with Python  
 
+note:  program -> parse -> abstract-syntax-tree -> evel -> resule  
 
-note:  program -> parse -> abstract-syntax-tree -> evel -> resule
+scheme programs consist solely of expressions. 
+There is no statement/expression distinction  
 """
 
 """
 Type definitions for scheme objects
-
-scheme programs consist solely of expressions. 
-There is no statement/expression distinction
 """
 Symbol = str
 Number = (int, float)
