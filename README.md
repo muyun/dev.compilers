@@ -1,7 +1,9 @@
 
-### A tiny Scheme interpreter with Python
+### about interpreter and Compilers 
 
-#### notes on tiny-compiler
+#### sspy.py - A tiny Scheme interpreter with Python 
+
+#### notes on tiny-compiler  
 * regular expressions    
 regulare expressions by definition are limited to the operations of 
 star, concatenation, and union.    
@@ -14,6 +16,7 @@ TODO
 
 
 #### reference  
+* [lis](https://norvig.com/lispy.html)  
 * [Writing Interpreters and Compilers for the Raspberry Pi Using Python: 2nd]
 * [Ch3: Interpreting Computer Programs](http://composingprograms.com/pages/31-introduction.html)  
 * [the super tiny compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
