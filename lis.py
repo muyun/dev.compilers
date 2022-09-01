@@ -75,8 +75,8 @@ def parse(program: str) -> Exp:
 # calling a procedure introduces the new local variables,
 # binding each symbol in the parameter list of 
 # define Env as a class  
-from collections import UserDict 
-class Env(UserDict):
+#from collections import UserDict 
+class Env(dict):
     """ An env: a dict of {variable : value} pairs, with an outer Env"""
     # create a new env that has those {variable : value} pairs as the inner part,
     # and also refers to the given outer env
@@ -97,7 +97,7 @@ class Procedure():
     # __call__ method enables classes where the instances behave like functions 
     # and can be called like a function
     def __call__(self, *args):
-        return eval(self.body, Env(self.parms, args, self.env))
+        return eval(self.body, Env(self.params, args, self.env))
 
 def standard_env() -> Env:
     """ An environment with some Scheme standard procedures
@@ -148,23 +148,37 @@ def eval(x: Exp, env=global_env) -> Exp:
         # a symbol is interpreted as a variable name
         # its value is the variable's value
         # r => 10
-        return env[x]
+        #return env[x]
+        return env.find(x)[x]
     elif isinstance(x, Number): # constant number 
         # a number evaluates to itself 
         # 12 => 12
         return x
-    elif x[0]  == 'if':  #conditional
+
+    op, *args = x 
+    if op == 'quote':  #quotation 
+        # expression (quote exp)
+        # (quote (+ 1 2))  => (+ 1 2)
+        return args[0]
+    elif op  == 'if':  #conditional
         # evaluate test
         # if true, evaluate and return conseq; otherwise alt
         # (if (> 10 20) (+ 1 1) (+ 3 3)) => 6
-        (_, test, conseq, alt) = x
+        (test, conseq, alt) = args
         exp = (conseq if eval(test, env) else alt)
         return eval(exp, env)
-    elif x[0] == 'define': # definition
+    elif op == 'define': # definition
         # define a new variable and give it the value of evaluating the expression exp
         # (define r 10)
-        (_, symbol, exp) = x
+        (symbol, exp) = args
         env[symbol] = eval(exp, env)
+    elif op == 'set!': #assignment
+        # (set! r (* r r))
+        (symbol, exp) = args
+        env.find(symbol)[symbol] = eval(exp, env)
+    elif op == 'lambda':  #procedure
+        (parms, body) = args
+        return Procedure(parms, body, env)
     else:   # procedure call
         # evaluate proc and all the args, 
         # and then the procedure is applied to the list of arg values
@@ -173,13 +187,13 @@ def eval(x: Exp, env=global_env) -> Exp:
         # a callable is a function-like object, meaning it's something that behaves like a function
         # proc is a function object, we can call a function object by putting ()
         proc = eval(x[0], env)  #func
-        args = [eval(arg, env) for arg in x[1:]]  #args
+        vals = [eval(arg, env) for arg in args]  #args
         #print("proc: ", proc)
         #print("args: ", args)
         #
         # a function  is passed as data
         # proc is a reference with eval(x[0], env)
-        return proc(*args)
+        return proc(*vals)
 
 ## A REPL
 def repl(prompt='lis.py> '):
@@ -198,12 +212,13 @@ def schemestr(exp):
 
 
 def main():
+    """
     program = "(sqrt (* 2 8))"
     ast = parse(program)
     print(ast)
     print(eval(ast))
-    
-    #repl()
+    """
+    repl()
 
 
 if __name__ == "__main__":
