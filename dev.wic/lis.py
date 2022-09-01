@@ -6,6 +6,9 @@ note:  program -> parse -> abstract-syntax-tree -> evel -> resule
 
 """
 Type definitions for scheme objects
+
+scheme programs consist solely of expressions. 
+There is no statement/expression distinction
 """
 Symbol = str
 Number = (int, float)
@@ -64,7 +67,38 @@ def parse(program: str) -> Exp:
     return ast
 
 #### environments  
-# an environment is a mapping from variable names to their values
+# an environment is a mapping from variable names to their values;
+# eval will use a global env that includes the names for standard functions,
+# this env can be augmented with user-defined variables, using the expression (define symbol value)
+#
+
+# calling a procedure introduces the new local variables,
+# binding each symbol in the parameter list of 
+# define Env as a class  
+from collections import UserDict 
+class Env(UserDict):
+    """ An env: a dict of {variable : value} pairs, with an outer Env"""
+    # create a new env that has those {variable : value} pairs as the inner part,
+    # and also refers to the given outer env
+    def __init__(self, params=(), args=(), outer=None):
+        self.update(zip(params, args))
+        self.outer = outer
+    
+    # the find method is to find the right env for a variable: either the inner one or an outer eone
+    def find(self, var):
+        # self represents the instance of the class
+        return self if (var in self) else self.outer.find(var)
+    
+class Procedure():
+    "a user-defined Scheme procedure"
+    def __init__(self, parms, body, env):
+        self.params, self.body, self.env = parms, body, env
+
+    # __call__ method enables classes where the instances behave like functions 
+    # and can be called like a function
+    def __call__(self, *args):
+        return eval(self.body, Env(self.parms, args, self.env))
+
 def standard_env() -> Env:
     """ An environment with some Scheme standard procedures
     """
@@ -72,7 +106,8 @@ def standard_env() -> Env:
     import operator as op
 
     env = Env()
-    env.update(vars(math))
+    # vars() will return a dict containing the local symbol table
+    env.update(vars(math))  # retrieve the __dict__ attribute for math module
     env.update({
         '+':op.add,
         '*':op.mul,
@@ -103,28 +138,47 @@ def standard_env() -> Env:
 
 global_env = standard_env()
 
-# TOCHECK
+# TODO 
 def eval(x: Exp, env=global_env) -> Exp:
     """the internal representation is then processed according to the semantic rules of the language,
     thereby carrying out the computation
     """
     # Evaluate an expression in an environment  
     if isinstance(x, Symbol):  # variable reference
+        # a symbol is interpreted as a variable name
+        # its value is the variable's value
+        # r => 10
         return env[x]
     elif isinstance(x, Number): # constant number 
+        # a number evaluates to itself 
+        # 12 => 12
         return x
     elif x[0]  == 'if':  #conditional
+        # evaluate test
+        # if true, evaluate and return conseq; otherwise alt
+        # (if (> 10 20) (+ 1 1) (+ 3 3)) => 6
         (_, test, conseq, alt) = x
         exp = (conseq if eval(test, env) else alt)
         return eval(exp, env)
     elif x[0] == 'define': # definition
+        # define a new variable and give it the value of evaluating the expression exp
+        # (define r 10)
         (_, symbol, exp) = x
         env[symbol] = eval(exp, env)
     else:   # procedure call
+        # evaluate proc and all the args, 
+        # and then the procedure is applied to the list of arg values
+        # (sqrt (* 2 8))  => 4.0
+        #
+        # a callable is a function-like object, meaning it's something that behaves like a function
+        # proc is a function object, we can call a function object by putting ()
         proc = eval(x[0], env)  #func
         args = [eval(arg, env) for arg in x[1:]]  #args
-        print("proc: ", proc)
-        print("args: ", args)
+        #print("proc: ", proc)
+        #print("args: ", args)
+        #
+        # a function  is passed as data
+        # proc is a reference with eval(x[0], env)
         return proc(*args)
 
 ## A REPL
@@ -144,8 +198,7 @@ def schemestr(exp):
 
 
 def main():
-    
-    program = "(begin (define r 10) (* pi (* r r)))"
+    program = "(sqrt (* 2 8))"
     ast = parse(program)
     print(ast)
     print(eval(ast))
